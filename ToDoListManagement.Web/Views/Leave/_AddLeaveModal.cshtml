@@ -1,0 +1,58 @@
+@using ToDoListManagement.Entity.ViewModel
+@model ToDoListManagement.Entity.ViewModel.LeaveViewModel
+
+<div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+        <form id="addLeaveForm" data-bind="submit: submitAddLeaveForm">
+            <input type="hidden" value="@Model.RequestedUserId" asp-for="RequestedUserId">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Leave Request</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" placeholder="Name" data-bind="value: addLeaveData.requestedName">
+                            <label for="addRequestedName">Name</label>
+                            <span class="text-danger" data-bind="validationMessage: addLeaveData.requestedName"></span>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="addProjectName" data-bind="value: addLeaveData.approvedName"
+                                placeholder="Name">
+                            <label for="addProjectName">Reporting Person</label>
+                            <span class="text-danger" data-bind="validationMessage: addLeaveData.approvedName"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" placeholder="Reporting Person" data-bind="value: addLeaveData.approvedName">
+                            <label for="addTaskStartDate">Start Date</label>
+                            <span class="text-danger" asp-validation-for="StartDate" id="toDateValidation"></span>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control " asp-for="EndDate" placeholder="Start Date" />
+                            <label for="addTaskStartDate">End Date</label>
+                            <span class="text-danger" asp-validation-for="EndDate"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center px-0">
+                <button type="submit" class="btn navbar-color text-white btn-secondary">Save</button>
+                <button type="button" class="btn cancel-btn-color ms-1 btn-outline-secondary"
+                    data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.4/knockout.validation.min.js" />

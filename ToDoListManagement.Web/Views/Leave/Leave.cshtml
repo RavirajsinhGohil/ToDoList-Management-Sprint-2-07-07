@@ -1,0 +1,42 @@
+@using ToDoListManagement.Entity.ViewModel
+
+@{
+    ViewData["Title"] = "Leave";
+    bool canAddEdit = GetPermissionService.HasPermission(User, "Leave", "CanAddEdit");
+    bool canDelete = GetPermissionService.HasPermission(User, "Leave", "CanDelete");
+}
+
+<div class="container-fluid">
+    <section class="content-header my-4">
+        <div class="d-flex justify-content-between">
+            <h2>Leave</h2>
+            <div data-bind="visible: shouldShowAddBtn">
+                <button class="btn btn-secondary text-white" id="addTaskButton" data-bind="click: openAddLeaveModal">
+                    <span class="fw-bold">+</span> Add Leave
+                </button>
+            </div>
+        </div>
+    </section>
+    <div class="card">
+        <div class="card-body">
+            <div id="leaveListContainer" class="w-100 mb-3">
+                <partial name="_LeaveList" model="new List<LeaveViewModel>()" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Leave Modal -->
+<div class="modal fade" id="addLeaveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <partial name="_AddLeaveModal" model="new LeaveViewModel()" />
+</div>
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="~/js/Leave.js"></script>
+<script>
+    window.LeavePermissions = {
+        canAddEdit: @canAddEdit.ToString().ToLower(),
+        canDelete: @canDelete.ToString().ToLower()
+    };
+</script>
+<script src="~/js/LeaveView.js"></script>
