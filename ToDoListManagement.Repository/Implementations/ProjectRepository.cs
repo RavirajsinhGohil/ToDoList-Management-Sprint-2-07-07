@@ -64,7 +64,7 @@ public class ProjectRepository : IProjectRepository
 
     public async Task<Pagination<User>> GetPaginatedMembersAsync(Pagination<User> pagination)
     {
-        IQueryable<User>? query = _context.Users.Where(u => u.RoleId != 1 && u.RoleId != 2 && !u.IsDeleted);
+        IQueryable<User>? query = _context.Users.Where(u => u.RoleId == 3 && !u.IsDeleted);
 
         int totalRecords = await query.CountAsync();
 

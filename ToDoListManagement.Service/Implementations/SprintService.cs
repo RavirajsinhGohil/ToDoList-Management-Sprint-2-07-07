@@ -106,7 +106,7 @@ public class SprintService : ISprintService
     public async Task<bool> StartSprintAsync(int sprintId)
     {
         List<SprintViewModel> sprints = await GetAllSprints(sprintId);
-        if (sprints.Any(s => s.SprintId == sprintId && s.Status != "In Progress"))
+        if (sprints.Any(s => s.SprintId != sprintId && s.Status == "In Progress"))
         {
             return false;
         }

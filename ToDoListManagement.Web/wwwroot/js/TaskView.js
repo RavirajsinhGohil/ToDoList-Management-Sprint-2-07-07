@@ -163,6 +163,7 @@ function initSortable() {
                     return;
                 }
             });
+            GetSprintById(viewModel.selectedSprintId());
         }
     }).disableSelection();
 }
